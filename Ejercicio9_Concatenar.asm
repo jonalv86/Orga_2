@@ -2,6 +2,7 @@
 section .data
 testa:  db "Hola ", 0
 testb:  db "mundo", 0
+;buffer: db "", 0
 buffer: times 50 db 0   ;Reservar un espacio en memoria.
 
 
@@ -10,6 +11,10 @@ global CMAIN
 CMAIN:
     mov     ebp, esp; for correct debugging
     ;write your code here
+    ;PRINT_STRING buffer
+    ;PRINT_STRING testa
+    ;PRINT_STRING testb
+    ;NEWLINE
     MOV     EAX, buffer
     MOV     EBX, testa
     MOV     ECX, testb
