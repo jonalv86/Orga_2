@@ -48,10 +48,10 @@ CICLOSUBSTRING:
     MOV     EAX, EBX
     POP     EBX
     ADD     EAX, 1
+    ADD     EDX, 1          
     CMP     ECX, EBX
     JE      SALIR           ;Si es la misma poscición de memoria SALIR
-    ADD     EDX, 1          ;Si no, avanzo a la siguiente posición de memoria del texto y del buffer
-    ADD     ECX, 1
+    ADD     ECX, 1          ;Si no, avanzo a la siguiente posición de memoria del texto y del buffer
     JMP     CICLOSUBSTRING
     
 SALIR:
