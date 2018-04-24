@@ -12,3 +12,14 @@ struct nodoLista * agregar_valor (struct nodo_lista * anterior, int a) {
 	}
 	return agregar_valor (anterior -> prox, a);
 }
+
+void eliminar_lista (struct nodo_lista * nodo) {
+	if (nodo == NULL) {
+		return
+	}
+	if (nodo -> prox != NULL) {
+		eliminar_lista (nodo -> prox);
+	}
+	free (nodo);
+	return;
+}
