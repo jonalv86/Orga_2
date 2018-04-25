@@ -32,12 +32,15 @@ void borrar_abb(struct nodo_abb * a) {
 	if (a == NULL) {
 		return;
 	}
-	if (a -> izq != NULL) {
-		borrar_abb (a -> izq);
+	if (a->izq != NULL) {
+		borrar_abb (a->izq);
+		a->izq = NULL;
 	}
-	if (a -> izq != NULL) {
-		borrar_abb (a -> izq);
+	if (a->der != NULL) {
+		borrar_abb (a->der);
+		a->der = NULL;
 	}
+	a = NULL;
 	free (a);
 	return;
 }
@@ -56,26 +59,19 @@ void mostrar_abb(struct nodo_abb * a) {
 main(int argc, char *argv[]) {
 	struct nodo_abb *inicial;
 	inicial = agregar_abb(NULL, 8);
-	//mostrar_abb(inicial);
-	//printf("\n");	
+	mostrar_abb(inicial);
+	printf("\n");	
 	agregar_abb(inicial, 54);
-	//mostrar_abb(inicial);
-	//printf("\n");	
 	agregar_abb(inicial, 17);
-	//mostrar_abb(inicial);
-	//printf("\n");	
 	agregar_abb(inicial, 5);
-	//mostrar_abb(inicial);
-	//printf("\n");	
-	//agregar_abb(inicial, 8);
-	//mostrar_abb(inicial);
-	//printf("\n");	
-	//agregar_abb(inicial, 5);
-	//mostrar_abb(inicial);
-	//printf("\n");	
+	agregar_abb(inicial, 8);
+	agregar_abb(inicial, 5);
 	agregar_abb(inicial, 70);
-	//mostrar_abb(inicial);
-	//printf("\n");	
+	agregar_abb(inicial, 75);
 	agregar_abb(inicial, 2);
 	mostrar_abb(inicial);
+	printf("\n");
+	borrar_abb(inicial);
+	mostrar_abb(inicial);
+	printf("\n");	
 }
