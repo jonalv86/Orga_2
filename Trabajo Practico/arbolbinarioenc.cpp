@@ -30,15 +30,16 @@ struct nodo_abb * agregar_abb(struct nodo_abb * arbol, int val) {
 
 void borrar_abb(struct nodo_abb * a) {
 	if (a == NULL) {
-		free(a);
 		return;
 	}
 	if (a->izq != NULL) {
 		borrar_abb (a->izq);
+		free(a->izq);
 		a->izq = NULL;
 	}
 	if (a->der != NULL) {
 		borrar_abb (a->der);
+		free(a->der);
 		a->der = NULL;
 	}
 	return;
