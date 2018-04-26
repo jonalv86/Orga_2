@@ -9,8 +9,8 @@ struct nodo_abb {
 };
 
 struct nodo_abb * agregar_abb(struct nodo_abb * arbol, int val) {
-	struct nodo_abb *nuevo = (struct nodo_abb *) malloc(sizeof(struct nodo_abb));
 	if (arbol == NULL) {
+		struct nodo_abb *nuevo = (struct nodo_abb *) malloc(sizeof(struct nodo_abb));
 		nuevo -> valor = val;
 		nuevo -> cantidad = 1;
 		nuevo -> izq = NULL;
@@ -30,6 +30,7 @@ struct nodo_abb * agregar_abb(struct nodo_abb * arbol, int val) {
 
 void borrar_abb(struct nodo_abb * a) {
 	if (a == NULL) {
+		free(a);
 		return;
 	}
 	if (a->izq != NULL) {
@@ -40,8 +41,6 @@ void borrar_abb(struct nodo_abb * a) {
 		borrar_abb (a->der);
 		a->der = NULL;
 	}
-	a = NULL;
-	free (a);
 	return;
 }
 
