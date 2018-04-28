@@ -3,12 +3,16 @@
 section .data   ;para testear
    ; inicial:    DD 0x0
     inicial:    times 400000 DD 0
+    test:       db "¡Hola mundo!", 0
 
 section .text
 global CMAIN
 CMAIN:
-    mov ebp, esp; for correct debugging
+     mov ebp, esp; for correct debugging
     ;write your code here
+    
+    CALL    funcion_test
+
     ;Inicio add
     MOV     EAX, inicial
     MOV     EBX, 8
@@ -239,4 +243,11 @@ SALIR:
     
 TERMINARMOSTRAR:
     PRINT_STRING "}"
+    JMP     SALIR
+    
+funcion_test:
+    PUSH    EBP
+    MOV	    EBP, ESP
+    PRINT_STRING test
+    NEWLINE
     JMP     SALIR
