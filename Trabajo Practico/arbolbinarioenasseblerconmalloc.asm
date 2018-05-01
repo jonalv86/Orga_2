@@ -1,6 +1,6 @@
 %include "io.inc"
-extern _puts, _printf, _malloc, _free
-
+;extern _puts, _printf, _malloc, _free
+extern _malloc
 section .data   ;para testear
     inicial:    times 4 DD 0
     test:       db "¡Hola mundo!", 0
@@ -292,8 +292,18 @@ borrar_abb:
     CMP     EBX, 0
     JE      SALIR
     ADD     EbX, 8
+    push ebx
+    push ebx
+    call borrar_abb
+    add esp, 4
+    pop ebx
     MOV     [EbX], dword 0
     ADD     EbX, 4
+    push ebx
+    push ebx
+    call borrar_abb
+    add esp, 4
+    pop ebx
     MOV     [EbX], dword 0
     JMP     SALIR
          
