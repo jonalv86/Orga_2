@@ -6,6 +6,7 @@ section .data   ;para testear
     test:       db "¡Hola mundo!", 0
 
 section .text
+global funcion_test
 global CMAIN
 CMAIN:
      mov ebp, esp; for correct debugging
