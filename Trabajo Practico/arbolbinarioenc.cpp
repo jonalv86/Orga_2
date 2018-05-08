@@ -70,20 +70,36 @@ void enOrden(struct nodo_abb * a)
 main(int argc, char *argv[]) {
 	struct nodo_abb *inicial;
 	inicial = agregar_abb(NULL, 8);
+	int valor;
+	char Seguir = 'S';
+	
 	mostrar_abb(inicial);
 	printf("\n");	
-	agregar_abb(inicial, 54);
-	agregar_abb(inicial, 17);
-	agregar_abb(inicial, 5);
-	agregar_abb(inicial, 8);
-	agregar_abb(inicial, 5);
-	agregar_abb(inicial, 70);
-	agregar_abb(inicial, 75);
-	agregar_abb(inicial, 2);
+	
+	while (Seguir == 'S')
+	{
+		printf("Introducir un numero entero");
+		scanf("%d", valor);
+		agregar_abb(inicial, valor);
+		printf("Si desea continuar ingresar S");
+		
+		getchar();
+		Seguir = toupper(getchar());
+
+	}
+	//agregar_abb(inicial, 54);
+	//agregar_abb(inicial, 17);
+	//agregar_abb(inicial, 5);
+	//agregar_abb(inicial, 8);
+	//agregar_abb(inicial, 5);
+	//agregar_abb(inicial, 70);
+	//agregar_abb(inicial, 75);
+	//agregar_abb(inicial, 2);
 	mostrar_abb(inicial);
 	printf("\n");
 	enOrden(inicial);
 	borrar_abb(inicial);
 	mostrar_abb(inicial);
 	printf("\n");	
+	getchar();
 }
