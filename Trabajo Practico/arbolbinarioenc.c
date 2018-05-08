@@ -61,7 +61,7 @@ void enOrden(struct nodo_abb * a)
 	if (a != NULL)
 	{
 		enOrden(a->izq);
-		printf("%d \n ", a->valor);
+		printf("%d\n", a->valor);
 		enOrden(a->der);
 	}
 }
@@ -78,10 +78,10 @@ main(int argc, char *argv[]) {
 	
 	while (Seguir == 'S')
 	{
-		printf("Introducir un numero entero");
-		scanf("%d", valor);
+		printf("Introducir un numero entero\n");
+		scanf("%d", &valor);
 		agregar_abb(inicial, valor);
-		printf("Si desea continuar ingresar S");
+		printf("Si desea continuar ingresar S\n");
 		
 		getchar();
 		Seguir = toupper(getchar());
