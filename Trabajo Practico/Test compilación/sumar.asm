@@ -1,6 +1,7 @@
+global _sumar
+
 section .text
-global sumar
-sumar:
+_sumar:
     PUSH    EBP
     MOV     EBP, ESP
     MOV     EAX, [EBP+8]
