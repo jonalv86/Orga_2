@@ -29,7 +29,7 @@ _agregar_abb:
     CMP 	EBX, 0
     JNE     existe_arbol
 
-iniciar_arbol:   
+iniciar_arbol:   			;creo el arbol
     ;malloc 32 bytes
     PUSH	dword 32
     CALL	_malloc
@@ -39,7 +39,6 @@ iniciar_arbol:
     TEST	EAX, EAX
     JZ    	fail_exit
     
-    ;creo el arbol
 	MOV     EBX, [EBP+12]   ;valor
     MOV     [EAX], EBX
     ADD     EAX, 4
@@ -55,95 +54,73 @@ existe_arbol:
 	MOV     EAX, [EBP+8]    ;puntero
     MOV     ECX, [EBP+12]   ;valor
     MOV     EBX, [EAX]      ;me paro a donde apunta el puntero del arbol
-    ;MOV     EDX, [EBX]      ;pido el valor del arbol
-    ;CMP     ECX, EDX        ;lo comparo
 	CMP     ECX, EBX        ;lo comparo
     JE      incrementar_nodo
-    ;Menor valor
-    JL      nodo_menor
-    ;Mayor valor
-    JA      nodo_mayor
+    JL      nodo_menor		;Menor valor
+    JA      nodo_mayor		;Mayor valor
     
 incrementar_nodo:
-push debug_igual
-call _printf
-ADD ESP, 4
 	MOV     EAX, [EBP+8]
     ADD     EAX, 4
     ADD     [EAX], dword 1
     JMP     SALIR
     
 nodo_menor:
-push debug_menor
-call _printf
-ADD ESP, 4
-    ;Inicio add
-	MOV     EAX, [EBP+8]
+    MOV     EAX, [EBP+8]
     ADD     EAX, 8
     JMP     nuevo_nodo
 
 nodo_mayor:
-push debug_mayor
-call _printf
-ADD ESP, 4
 	MOV     EAX, [EBP+8]
     ADD     EAX, 12
     
-nuevo_nodo:    
-    ;Inicio add
+nuevo_nodo:    				;Inicio add
     PUSH 	EAX
-	MOV     ECX, [EBP+12]
+	MOV     ECX, [EBP+12]	;valor
     MOV		EBX, [EAX]
-	PUSH    ECX     ;valor
+	PUSH    ECX     		
 	PUSH    EBX
     CALL    _agregar_abb
     ADD     ESP, 8
-    ;EAX apunta el nuevo nodo
     POP		EDX
     MOV 	ECX, [EDX]
 	CMP		ECX, 0
     JNE 	SALIR
-    MOV 	[EDX], EAX
-	;Fin add
-    JMP     SALIR
+    MOV 	[EDX], EAX		;EAX apunta el nuevo nodo
+    JMP     SALIR			;Fin add
         
 SALIR:
     POP     EBP
     RET
 	
-_mostrar_abb:    ;implentado recursivo
+_mostrar_abb:    			;implentado recursivo
     PUSH    EBP
     MOV	    EBP, ESP
-push p_abrir
-call _printf
-add esp, 4
+	push p_abrir
+	call _printf
+	add esp, 4
     MOV     EBX, [EBP+8]
-    ;MOV     EBX, [EAX]
     CMP     EBX, 0
     JE      TERMINARMOSTRAR
     MOV     ECX, [EBX]      ;valor
     ADD     EBX, 4
     MOV     EDX, [EBX]      ;cantidad
-push edx
-push ecx
-push p_valor
-call _printf
-add esp, 12
-    ;mostrar nodo izquierdo
-MOV EAX, [EBP+8]			;nodo izq
-add eax, 8
-MOV EBX, [EAX]
-
-    ;ADD     EBX, 4
+	push edx
+	push ecx
+	push p_valor
+	call _printf
+	add esp, 12
+	MOV EAX, [EBP+8]		;mostrar nodo izquierdo
+	add eax, 8
+	MOV EBX, [EAX]
     push eax
     PUSH    EBX
     CALL    _mostrar_abb
     ADD     ESP, 4
-push p_espacio
-call _printf
-add esp, 4
-    pop eax
-    ;mostrar nodo derecho
+	push p_espacio
+	call _printf
+	add esp, 4
+    pop eax					;mostrar nodo derecho
     ADD     EaX, 4
 	MOV EBX, [EAX]
     PUSH    EBX
@@ -154,13 +131,13 @@ add esp, 4
 TERMINARMOSTRAR:
 	PUSH p_cerrar
 	CALL _printf
-add esp, 4
+	ADD		ESP,4
     JMP     SALIR
     
 fail_exit:
-push fallo_malloc
-call _printf
-ADD ESP, 4
+	push fallo_malloc
+	call _printf
+	ADD ESP, 4
     mov  eax, 1
     pop  ebp
     ret
