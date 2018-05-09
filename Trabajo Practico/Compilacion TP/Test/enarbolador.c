@@ -10,18 +10,8 @@ struct nodo_abb {
 
 extern struct nodo_abb * agregar_abb(struct nodo_abb *, int);
 extern void mostrar_abb(struct nodo_abb *);
-/*
-void mostrar_abb(struct nodo_abb * a) {
-	printf("{");
-	if (a != NULL) {
-		printf("%d:%d ", a -> valor, a -> cantidad);
-		mostrar_abb(a -> izq);
-		printf(" ");
-		mostrar_abb(a -> der);
-	}
-	printf("}");
-}
-*/
+extern void borrar_abb(struct nodo_abb *);
+
 void enOrden(struct nodo_abb * a)
 {
 	if (a != NULL)
@@ -31,7 +21,6 @@ void enOrden(struct nodo_abb * a)
 		enOrden(a->der);
 	}
 }
-
 
 int main(int argc, char *argv[]) {
 	struct nodo_abb *inicial;
@@ -48,6 +37,9 @@ int main(int argc, char *argv[]) {
 	mostrar_abb(inicial);
 	getchar();
 	agregar_abb(inicial, 82);
+	mostrar_abb(inicial);
+	getchar();
+	borrar_abb(inicial);
 	mostrar_abb(inicial);
 	getchar();
 	agregar_abb(inicial, 94);
