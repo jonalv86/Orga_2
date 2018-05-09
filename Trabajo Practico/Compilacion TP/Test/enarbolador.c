@@ -9,7 +9,8 @@ struct nodo_abb {
 };
 
 extern struct nodo_abb * agregar_abb(struct nodo_abb *, int);
-
+extern void mostrar_abb(struct nodo_abb *);
+/*
 void mostrar_abb(struct nodo_abb * a) {
 	printf("{");
 	if (a != NULL) {
@@ -20,7 +21,7 @@ void mostrar_abb(struct nodo_abb * a) {
 	}
 	printf("}");
 }
-
+*/
 void enOrden(struct nodo_abb * a)
 {
 	if (a != NULL)
@@ -41,6 +42,45 @@ int main(int argc, char *argv[]) {
 	mostrar_abb(inicial);
 	getchar();
 	agregar_abb(inicial, 9);
+	mostrar_abb(inicial);
+	getchar();
+	agregar_abb(inicial, 8);
+	mostrar_abb(inicial);
+	getchar();
+	agregar_abb(inicial, 8);
+	mostrar_abb(inicial);
+	getchar();
+	agregar_abb(inicial, 8);
+	mostrar_abb(inicial);
+	getchar();
+	agregar_abb(inicial, 9);
+	mostrar_abb(inicial);
+	getchar();
+	agregar_abb(inicial, 9);
+	mostrar_abb(inicial);
+	getchar();
+	agregar_abb(inicial, 9);
+	mostrar_abb(inicial);
+	getchar();
+	agregar_abb(inicial, 6);
+	mostrar_abb(inicial);
+	getchar();
+	agregar_abb(inicial, 5);
+	mostrar_abb(inicial);
+	getchar();
+	agregar_abb(inicial, 4);
+	mostrar_abb(inicial);
+	getchar();
+	agregar_abb(inicial, 3);
+	mostrar_abb(inicial);
+	getchar();
+	agregar_abb(inicial, 2);
+	mostrar_abb(inicial);
+	getchar();
+	agregar_abb(inicial, 1);
+	mostrar_abb(inicial);
+	getchar();
+	agregar_abb(inicial, 11);
 	mostrar_abb(inicial);
 	getchar();
 	return 0;
