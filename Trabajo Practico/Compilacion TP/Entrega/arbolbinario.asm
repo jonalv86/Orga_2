@@ -27,9 +27,10 @@ _agregar_abb:
     MOV     EAX, [EBP+8]    ;puntero
     CMP     EAX, 0          ;el puntero es nulo?
     JE 		iniciar_arbol
-    MOV 	EBX, [EAX]
-    CMP 	EBX, 0
-    JNE     existe_arbol
+    ;MOV 	EBX, [EAX]
+    ;CMP 	EBX, 0
+    ;JNE     existe_arbol
+	jmp existe_arbol
 
 iniciar_arbol:   			;creo el arbol
     ;malloc 32 bytes
@@ -59,7 +60,7 @@ existe_arbol:
 	CMP     ECX, EBX        ;lo comparo
     JE      incrementar_nodo
     JL      nodo_menor		;Menor valor
-    JA      nodo_mayor		;Mayor valor
+    JG      nodo_mayor		;Mayor valor
     
 incrementar_nodo:
 	MOV     EAX, [EBP+8]

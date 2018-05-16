@@ -17,7 +17,8 @@ void enOrden(struct nodo_abb * a)
 	if (a != NULL)
 	{
 		enOrden(a->izq);
-		printf("%d\n", a->valor);
+		for (int i=0; i<a->cantidad; i++)
+			printf("%d\n", a->valor);
 		enOrden(a->der);
 	}
 }
@@ -27,7 +28,7 @@ int main(int argc, char *argv[]) {
 	int valor;
 	struct nodo_abb *inicial;
 
-	printf("Bienvenido al ordenador de n%cmeros.\nIngrese a continuaci%cn los n%cmeros que desea ordenar uno por l%cnea y luego cualquier otro caracter para finalizar:\n\n",163,162,163,161);
+	//printf("Bienvenido al ordenador de n%cmeros.\nIngrese a continuaci%cn los n%cmeros que desea ordenar uno por l%cnea y luego cualquier otro caracter para finalizar:\n\n",163,162,163,161);
 	int esNumero = scanf("%d", &valor);
 	while(getchar() != '\n');		//Consumir el buffer.
 		
@@ -42,12 +43,16 @@ int main(int argc, char *argv[]) {
 		while(getchar() != '\n'); 
 	}
 	if (inicioArbol == 0) {
-		printf("No se han ingresado valores y por lo tanto no se ha harmado el %crbol.\n",160);
+		printf("No se han ingresado valores y por lo tanto no se ha armado el %crbol.\n",160);
 	} else {
-		printf("\n\nN%cmeros ordenados:\n",163);
+		//printf("\n\nN%cmeros ordenados:\n",163);
 		enOrden(inicial);
 	}
-	printf("\nPresione enter para salir.\n");
+	//printf("\nPresione enter para salir.\n");
 	getchar();
+	if (inicioArbol != 0) {
+		mostrar_abb(inicial);
+		getchar();
+	}
 	return 0;
 }
