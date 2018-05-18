@@ -1,0 +1,40 @@
+%include "io.inc"
+section .data
+vectorA: db 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250, 250
+vectorB: db 5, 6, 7, 8, 5, 6, 7, 8, 5, 6, 7, 8, 5, 6, 7, 8
+dimension: db 16
+buffer: times 16 db 0   ;Reservar un espacio en memoria.
+
+
+section .text
+global CMAIN
+CMAIN:
+mov     ebp, esp;
+
+mov eax, vectorA
+mov ebx, vectorB
+mov ecx, buffer
+mov dl, [dimension]
+push edx
+push ecx
+push ebx
+push eax
+call SumarVectores
+ADD     ESP, 16
+XOR     EAX, EAX
+RET
+
+XOR     EAX, EAX
+RET
+
+SumarVectores:
+PUSH    EBP
+MOV     EBP, ESP
+mov eax, [EBP+8]
+mov ebx, [EBP+12]
+movd mm0, [eax]
+movd mm1, [ebx]
+paddd mm0, mm1
+movd [buffer], mm0
+POP     EBP
+RET
