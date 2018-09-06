@@ -1,0 +1,67 @@
+%include "io.inc"
+section .data
+
+N1: db 8
+N2: db 8
+
+N3: dw 201
+N4: dw 200
+
+N5: dd 0x7fFFFFFF
+N6: dd 0x7fffffff
+
+N7: dq 0xeffffffffffffffe
+N8: dq 0x1000000000000001
+
+F1: dw 2.5
+F2: dd 2.5
+T: db "Hola mundo",0
+
+section .text
+global CMAIN
+CMAIN:
+    mov ebp, esp; for correct debugging
+    ;write your code here
+    ;
+    MOV EAX, [N1]
+    MOV EBX, [N2]
+    cmp AL, BL
+    JA P_M
+    
+    MOV EAX, [N3]
+    MOV EBX, [N4]
+    cmp AX, BX
+    JE P_ZERO
+    
+    MOV EBX, [N6]
+    MOV EAX, [N5]
+    CMP EAX, 0
+    JS P_NEG
+    JNS P_POS
+    add EAX, EBX
+    JO P_DESB
+    
+    SALIR:   
+    xor eax, eax
+    ret    
+    
+    ; ejercio 4-a
+    P_M:   
+    PRINT_STRING "N1 ES MAYOR QUE N2" 
+    JMP SALIR
+  
+    P_ZERO:
+    PRINT_STRING "LA RESTA ES CERO"
+    JMP SALIR
+    
+    P_DESB:
+    PRINT_STRING "HAY DESBORDAMIENTO"
+    JMP SALIR
+    
+    P_NEG:
+    PRINT_STRING "ES NEGATIVO"
+    JMP SALIR
+    
+    P_POS:
+    PRINT_STRING "ES POSITIVO"
+    JMP SALIR
