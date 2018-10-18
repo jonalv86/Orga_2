@@ -1,0 +1,38 @@
+%include "io.inc"
+extern printf
+
+section .data
+varc dd -1.0E10
+vard dd 1.02E23
+
+vardebug dd 0.0
+varsumatotal dq 0.0
+stringtotal db "La suma de todas las variables es: %f", 10, 0
+ 
+
+section .text
+global CMAIN
+CMAIN:
+    mov ebp, esp; for correct debugging
+    ;write your code here
+    
+    fldz
+    fld1
+    fld dword [varc]
+    fld dword [vard]
+    fldpi
+    
+    fadd
+    fadd
+    fadd
+    fadd
+    fst qword [varsumatotal]
+    
+    push dword [varsumatotal+4]
+    push dword [varsumatotal]
+    push stringtotal
+    call printf
+    add ESP, 12
+    
+    xor eax, eax
+    ret
