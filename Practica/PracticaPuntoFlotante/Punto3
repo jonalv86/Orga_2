@@ -1,0 +1,56 @@
+%include "io.inc"
+extern printf
+
+section .data
+arrflotantes dd -1.1, 2.4, 6.5, -5.8
+
+varsumatotal dq 0.0
+stringtotal db "La suma de todas las variables es: %f", 10, 0
+
+section .text
+global CMAIN
+CMAIN:
+    mov ebp, esp; for correct debugging
+    ;write your code here
+    
+    ;float suma_vf(float *vector, int cantidad);
+    mov eax, arrflotantes
+    mov ebx, 4
+    push ebx
+    push eax
+    call suma_vf
+    add ESP, 8
+    
+    fst qword [varsumatotal]
+    push dword [varsumatotal+4]
+    push dword [varsumatotal]
+    push stringtotal
+    call printf
+    add ESP, 12
+    
+    xor eax, eax
+    ret
+    
+suma_vf:
+    ;Un puntero al array            [EBP+8]
+    ;Cantidad de valoreas del array [EBP+12]
+    PUSH    EBP
+    MOV	    EBP, ESP
+    mov     eax, [EBP+8]
+    mov     ecx, [EBP+12]
+    mov edx, 4
+    xor ebx, ebx
+    fldz
+sumar:
+    cmp ecx, 0
+    je salir
+    fld dword [eax + ebx]
+    fadd
+    add ebx, edx
+    sub ecx, 1
+    jmp sumar    
+
+salir:    
+    POP     EBP
+    ret     
+    
